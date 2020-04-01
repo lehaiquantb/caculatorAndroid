@@ -33,6 +33,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btnPlus;
     Button btnPlusMinus;
 
+    int numA;
+    int numB;
+    char operator;
+    String textNumber = "";
+    String textShow = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,51 +70,138 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnEight = findViewById(R.id.btnEight);
         btnNine = findViewById(R.id.btnNine);
 
+        btnBS.setOnClickListener(this);
+        btnC.setOnClickListener(this);
+        btnCE.setOnClickListener(this);
+        btnDiv.setOnClickListener(this);
+        btnDot.setOnClickListener(this);
+        btnEqual.setOnClickListener(this);
+        btnMinus.setOnClickListener(this);
+        btnMul.setOnClickListener(this);
+        btnPlus.setOnClickListener(this);
+        btnPlusMinus.setOnClickListener(this);
+        btnZero.setOnClickListener(this);
+        btnOne.setOnClickListener(this);
+        btnTwo.setOnClickListener(this);
+        btnThree.setOnClickListener(this);
+        btnFour.setOnClickListener(this);
+        btnFive.setOnClickListener(this);
+        btnSix.setOnClickListener(this);
+        btnSeven.setOnClickListener(this);
+        btnEight.setOnClickListener(this);
+        btnNine.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         if (v.getId() == btnBS.getId()) {
-
+            if (textNumber.length() != 0) {
+                textNumber = textNumber.substring(0,textNumber.length()-1);
+                textViewNumber.setText(textNumber);
+            }
         } else if (v.getId() == btnC.getId()) {
-
+                textShow = "";
+                textNumber = "";
+                textViewNumber.setText(textNumber);
+                textViewShow.setText(textShow);
         } else if (v.getId() == btnCE.getId()) {
-
+                textNumber = "";
+                textViewNumber.setText(textNumber);
         } else if (v.getId() == btnDiv.getId()) {
+            if (textNumber.length() != 0) {
+                operator = '/';
+                numA = Integer.parseInt(textNumber);
+                textShow = "";
+                textShow += textNumber + " / ";
+                textViewShow.setText(textShow);
+                textNumber = "";
+            }
 
         } else if (v.getId() == btnDot.getId()) {
 
         } else if (v.getId() == btnEqual.getId()) {
-
+            numB = Integer.parseInt(textViewNumber.getText().toString());
+            textShow += textViewNumber.getText() + " =";
+            textViewShow.setText(textShow);
+            textNumber = Integer.toString(calculate(numA, operator, numB));
+            textViewNumber.setText(textNumber);
         } else if (v.getId() == btnMinus.getId()) {
-
+            if (textNumber.length() != 0) {
+                operator = '-';
+                numA = Integer.parseInt(textNumber);
+                textShow = "";
+                textShow += textNumber + " - ";
+                textViewShow.setText(textShow);
+                textNumber = "";
+            }
         } else if (v.getId() == btnMul.getId()) {
+            if (textNumber.length() != 0) {
+                operator = 'x';
+                numA = Integer.parseInt(textNumber);
+                textShow = "";
+                textShow += textNumber + " x ";
+                textViewShow.setText(textShow);
+                textNumber = "";
+            }
 
         } else if (v.getId() == btnPlus.getId()) {
-
+            if (textNumber.length() != 0) {
+                operator = '+';
+                numA = Integer.parseInt(textNumber);
+                textShow = "";
+                textShow += textNumber + " + ";
+                textViewShow.setText(textShow);
+                textNumber = "";
+            }
         } else if (v.getId() == btnPlusMinus.getId()) {
 
         } else if (v.getId() == btnZero.getId()) {
-
+            if (textNumber.length() != 0) {
+                textNumber = textNumber + "0";
+                textViewNumber.setText(textNumber);
+            }
         } else if (v.getId() == btnOne.getId()) {
-
+            textNumber = textNumber + "1";
+            textViewNumber.setText(textNumber);
         } else if (v.getId() == btnTwo.getId()) {
-
+            textNumber = textNumber + "2";
+            textViewNumber.setText(textNumber);
         } else if (v.getId() == btnThree.getId()) {
-
+            textNumber = textNumber + "3";
+            textViewNumber.setText(textNumber);
         } else if (v.getId() == btnFour.getId()) {
-
+            textNumber = textNumber + "4";
+            textViewNumber.setText(textNumber);
         } else if (v.getId() == btnFive.getId()) {
-
+            textNumber = textNumber + "5";
+            textViewNumber.setText(textNumber);
         } else if (v.getId() == btnSix.getId()) {
-
+            textNumber = textNumber + "6";
+            textViewNumber.setText(textNumber);
         } else if (v.getId() == btnSeven.getId()) {
-
+            textNumber = textNumber + "7";
+            textViewNumber.setText(textNumber);
         } else if (v.getId() == btnEight.getId()) {
-
+            textNumber = textNumber + "8";
+            textViewNumber.setText(textNumber);
         } else if (v.getId() == btnNine.getId()) {
-
+            textNumber = textNumber + "9";
+            textViewNumber.setText(textNumber);
         }
 
+    }
+
+    public int calculate(int numA, char operator, int numB) {
+        if (operator == 'x')
+            return numA * numB;
+        else if (operator == '/') {
+            if (numB != 0)
+                return numA / numB;
+            else return 0;
+        } else if (operator == '-') {
+            return numA - numB;
+        } else if (operator == '+') {
+            return numA + numB;
+        } else return 0;
     }
 }

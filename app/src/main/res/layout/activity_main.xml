@@ -11,9 +11,10 @@
         android:id="@+id/textViewShow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="40sp"
+        android:textSize="30sp"
         android:text="0"
         ></TextView>
+
     <TextView
         android:id="@+id/textViewNumber"
         android:layout_width="match_parent"
@@ -21,8 +22,7 @@
         android:layout_weight="2"
         android:gravity="bottom|right"
         android:text="0"
-        android:textSize="100sp" >
-    </TextView>
+        android:textSize="70sp"></TextView>
 
     <LinearLayout
         android:layout_width="match_parent"
